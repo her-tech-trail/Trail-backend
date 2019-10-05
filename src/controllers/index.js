@@ -1,1 +1,3 @@
-// this is where we import all controllers
+import UsersController from './userController';
+
+export { UsersController };
