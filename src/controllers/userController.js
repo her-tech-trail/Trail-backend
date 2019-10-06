@@ -11,7 +11,7 @@ import {
 	Jwt,
 	bcrypt,
 	getCallbackUrls
-} from '../utils/index';
+} from '../utils';
 
 const { baseUrl } = getCallbackUrls;
 
@@ -22,13 +22,14 @@ const { baseUrl } = getCallbackUrls;
  */
 export default class UsersController {
 	/**
-   * @method registerUser
-   * @description Method for user registration
-   * @param {object} req - The Request Object
-   * @param {object} res - The Response Object
-   * @returns {object} response body object
-   */
+	 * @method registerUser
+	 * @description Method for user registration
+	 * @param {object} req - The Request Object
+	 * @param {object} res - The Response Object
+	 * @returns {object} response body object
+	 */
 	static async registerUser(req, res) {
+		console.log('arrived');
 		try {
 			const { email, password, firstName, lastName } = req.body;
 			const userExits = await models.Users.findOne({ where: { email } });
@@ -47,17 +48,18 @@ export default class UsersController {
 			// await services.sendEmail(email, 'confirmAccount', { firstName, url });
 			return successResponse(res, status.created, messages.signUp.success, { ...response, url }, token);
 		} catch (error) {
+			console.log(error);
 			return errorResponse(res, status.error, messages.signUp.error);
 		}
 	}
 
 	/**
-   * @method signInUser
-   * @description Method for user sign in
-   * @param {object} req - The Request Object
-   * @param {object} res - The Response Object
-   * @returns {object} response body object
-   */
+	 * @method signInUser
+	 * @description Method for user sign in
+	 * @param {object} req - The Request Object
+	 * @param {object} res - The Response Object
+	 * @returns {object} response body object
+	 */
 	static async signInUser(req, res) {
 		try {
 			const { email, password } = req.body;
@@ -88,12 +90,12 @@ export default class UsersController {
 	}
 
 	/**
-   * @method confirmUser
-   * @description Method for account confirmation
-   * @param {object} req - The Request Object
-   * @param {object} res - The Response Object
-   * @returns {object} response body object
-   */
+	 * @method confirmUser
+	 * @description Method for account confirmation
+	 * @param {object} req - The Request Object
+	 * @param {object} res - The Response Object
+	 * @returns {object} response body object
+	 */
 	static async confirmUser(req, res) {
 		const { token } = req.query;
 		try {

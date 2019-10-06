@@ -14,7 +14,7 @@
     "max-len": [
       "error",
       {
-        "code": 80
+        "code": 130
       }
     ],
     "function-paren-newline": 0,

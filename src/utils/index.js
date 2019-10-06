@@ -1,4 +1,24 @@
-import { hashPassword, comparePassword } from './bcrypt';
+import {
+  status, messages, successResponse, errorResponse, conflictResponse,
+} from './responses';
+import * as bcrypt from './bcrypt';
+import Jwt from './jwt';
 import getCallbackUrls from './getCallbackUrls';
 
-export { hashPassword, comparePassword, getCallbackUrls };
+const { generateToken, verifyToken } = Jwt;
+const { hashPassword, comparePassword } = bcrypt;
+
+export {
+  Jwt,
+  status,
+  messages,
+  bcrypt,
+  hashPassword,
+  generateToken,
+  verifyToken,
+  comparePassword,
+  successResponse,
+  errorResponse,
+  conflictResponse,
+  getCallbackUrls
+};
